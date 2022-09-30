@@ -8,7 +8,9 @@
 
 ### 二、系统主要功能模块（用户类型及不同类型用户具备的主要功能模块）
 
-![img](.\assets\wps1.jpg) 
+![img1](./assets/wps1.jpg)
+
+ 
 
 ### 三、E-R图（暂时不画，进一步分析、规划）
 
@@ -20,7 +22,7 @@
 
 #### 1、数据库物理文件组织
 
-![img](file:///C:\Users\11654\AppData\Local\Temp\ksohtml22656\wps2.jpg) 
+![img2](./assets/wps2.jpg) 
 
 **CREATE DATABASE TakeOut**
 
