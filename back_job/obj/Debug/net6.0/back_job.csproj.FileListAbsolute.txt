@@ -1,0 +1,15 @@
+D:\myStudy\大三啊啊要毕业了\数据库\BIG_WORK\back_job\bin\Debug\net6.0\back_job.exe
+D:\myStudy\大三啊啊要毕业了\数据库\BIG_WORK\back_job\bin\Debug\net6.0\back_job.deps.json
+D:\myStudy\大三啊啊要毕业了\数据库\BIG_WORK\back_job\bin\Debug\net6.0\back_job.runtimeconfig.json
+D:\myStudy\大三啊啊要毕业了\数据库\BIG_WORK\back_job\bin\Debug\net6.0\back_job.dll
+D:\myStudy\大三啊啊要毕业了\数据库\BIG_WORK\back_job\bin\Debug\net6.0\back_job.pdb
+D:\myStudy\大三啊啊要毕业了\数据库\BIG_WORK\back_job\obj\Debug\net6.0\back_job.csproj.AssemblyReference.cache
+D:\myStudy\大三啊啊要毕业了\数据库\BIG_WORK\back_job\obj\Debug\net6.0\back_job.GeneratedMSBuildEditorConfig.editorconfig
+D:\myStudy\大三啊啊要毕业了\数据库\BIG_WORK\back_job\obj\Debug\net6.0\back_job.AssemblyInfoInputs.cache
+D:\myStudy\大三啊啊要毕业了\数据库\BIG_WORK\back_job\obj\Debug\net6.0\back_job.AssemblyInfo.cs
+D:\myStudy\大三啊啊要毕业了\数据库\BIG_WORK\back_job\obj\Debug\net6.0\back_job.csproj.CoreCompileInputs.cache
+D:\myStudy\大三啊啊要毕业了\数据库\BIG_WORK\back_job\obj\Debug\net6.0\back_job.dll
+D:\myStudy\大三啊啊要毕业了\数据库\BIG_WORK\back_job\obj\Debug\net6.0\refint\back_job.dll
+D:\myStudy\大三啊啊要毕业了\数据库\BIG_WORK\back_job\obj\Debug\net6.0\back_job.pdb
+D:\myStudy\大三啊啊要毕业了\数据库\BIG_WORK\back_job\obj\Debug\net6.0\back_job.genruntimeconfig.cache
+D:\myStudy\大三啊啊要毕业了\数据库\BIG_WORK\back_job\obj\Debug\net6.0\ref\back_job.dll

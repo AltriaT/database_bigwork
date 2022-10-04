@@ -212,29 +212,6 @@ GO
 
 #### 1. orders上的触发器
 
-- No_money：检测顾客金钱是否可以购买
-
-  ```sql
-  Create TRIGGER [dbo].[No_money]
-  ON [dbo].[orders]
-  AFTER INSERT,UPDATE
-  AS
-  BEGIN
-  	DECLARE @money_now int,@money_cust int,@num_cust varchar(20)
-  	
-  	select @num_cust=Cno,@money_now=Omoney from inserted
-  	select @money_cust from Customer where Cno=@num_cust
-  	
-  	if(@money_cust<@money_now)
-  	BEGIN	
-  		print'余额不足，订单自动取消'		--实现功能时记得保存订单到临时表
-  		ROLLBACK TRANSACTION
-  	END
-  END
-  ```
-
-  
-
 - Store_off：店家休息无法购买，提示
 
   ```sql
@@ -259,21 +236,33 @@ GO
 
 - 支付：用户完成支付发生状态转变，进行金钱之间的转移
 
+  顾客支付后，订单状态由订单完成转变为正在出餐。
+
   ```sql
   Create trigger [dbo].[支付]
   on [dbo].[orders]
   after update
   as
   begin 
-  	declare @Omoney int,@Ono varchar(20),@Cno varchar(20),@Sno varchar(20),@Nstate varchar(20),@Ostate varchar(20)
-  
-  	select @Ono=Ono,@Cno=Cno,@Sno=Sno,@Nstate=Ostate,@Omoney=Omoney from inserted
+  	declare @fee decimal(18,2),@Omoney decimal(18,2),@Cmoney decimal(18,2),@Ono varchar(20),@Cno varchar(20),@Sno varchar(20),@Nstate varchar(20),@Ostate varchar(20)
+  	select @Ono=Ono,@Cno=Cno,@Sno=Sno,@Nstate=Ostate,@Omoney=Omoney,@fee=ODelfee from inserted
   	select @Ostate=Ostate from deleted
   
   	if(@Ostate='订单完成' and @Nstate='正在出餐')
+  			/*
+  			if(@Omoney+@fee>@Cmoney)
+  			begin
+  				print'余额不足，订单自动取消'		--实现功能时记得保存订单到临时表
+  				ROLLBACK TRANSACTION
+  			end
+  			*/
   			begin
   				update customer
   				set Cmoney-=@Omoney
+  				where Cno=@Cno
+  
+  				update customer
+  				set Cmoney-=@fee
   				where Cno=@Cno
   
   				update store
@@ -293,7 +282,7 @@ on [dbo].[orders]
 after update
 as
 begin 
-	declare @Dno varchar(20),@Nstate varchar(20),@Ostate varchar(20),@fee int
+	declare @Dno varchar(20),@Nstate varchar(20),@Ostate varchar(20),@fee decimal(18,2)
 	select @Dno=Dno,@Nstate=Ostate,@fee=ODelfee from inserted
 	select @Ostate=Ostate from deleted
 
@@ -312,8 +301,15 @@ end
 
   这是一个批处理操作，因为一个订单对应好多的purchase表项，所以采用临时表的方法来存储需要删除的表项，然后while循环逐一删除
 
+  正在配送：骑手减少金钱，顾客恢复配送费
+  
+  正在出餐：顾客恢复配送费
+  
+  若是正在配送or 正在出餐状态下：恢复商品数目，恢复顾客金钱，恢复商店金钱
+  
+  若是订单完成下：只恢复商品数量
+  
   ```sql
-  --顾客删除订单，订单删除,骑手金钱减少，批处理(商品数量恢复，顾客金钱恢复，商店金钱减少)
   Create trigger [dbo].[订单取消]
   on [dbo].[orders]
   instead of delete
@@ -328,47 +324,66 @@ end
   		pamount int
   		)
   	
-  	declare @DOno varchar(20),@DCno varchar(20),@DDno varchar(20),@fee int
-  	select @DOno=Ono,@DCno=Cno,@DDno=Dno,@fee=ODelfee from deleted
-  	--骑手减钱（啊，白忙了）
+  	declare @DOno varchar(20),@DCno varchar(20),@DDno varchar(20),@fee decimal(18,2),@state varchar(20)
+  	select @DOno=Ono,@DCno=Cno,@DDno=Dno,@fee=ODelfee,@state=Ostate from deleted
+  	--正在配送：骑手减少金钱，顾客恢复配送费
+  	if @state='正在配送'
   	begin 
   		update deliverer
   		set Dmoney-=@fee
-  		where Dno=@DDno		
+  		where Dno=@DDno
+  		
+  		update customer
+  		set Cmoney+=@fee
+  		where Cno=@DCno
   	end
-  
+  	--正在出餐：顾客恢复配送费
+  	if @state='正在出餐'
+  	begin
+  		update customer
+  		set Cmoney+=@fee
+  		where Cno=@DCno
+  	end
+  	--向临时表中插入数据
   	Insert into #temp
   	(Sno,Gno,pamount)
   	select o.Sno,p.Gno,p.pamount from purchase p,orders o where p.Ono=@DOno and o.Ono=@DOno
-  
+  	--遍历临时表中的数据，开始按每一行恢复
   	declare @i int=1,@size int=0
   	select @size = MAX([ID]) from #temp
-  	--循环
+  	print(@size)
   	while @i<=@size
   		begin
-  			declare @DGno varchar(20),@DSno varchar(20),@Dpamount int,@price int
+  			declare @DGno varchar(20),@DSno varchar(20),@Dpamount int,@price decimal(18,2)
   			select @DGno=Gno,@DSno=Sno,@Dpamount=pamount from #temp where ID=@i
   			select @price=Gprice from goods where Gno=@DGno
-  			
+  			if @state='正在配送' or @state = '正在出餐'
   			begin
-  				--商品数量恢复
+  			--恢复商品数目
   				update goods
   				set Gstock+=@Dpamount
   				where Gno=@DGno and Sno=@DSno
-  				--顾客金钱恢复
+  			--恢复顾客金钱
   				update customer
   				set Cmoney+=@Dpamount*@price
   				where Cno=@DCno
-  				--商店金钱减少
+  			--恢复商店金钱
   				update store
   				set Smoney-=@Dpamount*@price
   				where Sno=@DSno
-  				--删除表项
-  				delete from purchase where Gno=@DGno and Ono=@DOno
+  				--级联操作代替了删除的行为
+  				--delete from purchase where Gno=@DGno and Ono=@DOno
+  			end
+  			if @state='订单完成'
+  			begin
+  			--只恢复商品数量
+  				update goods
+  				set Gstock+=@Dpamount
+  				where Gno=@DGno and Sno=@DSno
   			end
   			Set @i=@i+1
   		end
-  		--删除订单
+  		--删除orders的一行
   		delete from orders where  @DOno=Ono
   end
   ```
