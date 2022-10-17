@@ -6,13 +6,13 @@
 
 **（概括性介绍应用系统的意义，体系结构，开发及运行所需的软件环境，用户类型及各类用户具备的主要功能模块）**
 
-这里将设计一个网上购物系统，类似于饿了么。本系统采用B/S结构，语言采用java制作后端，jsp和web作为前端，分为前端服务功能模块和后端管理功能模块。服务对象可以分为商户和顾客还有外卖员，商户可以开虚拟网络店铺，在店铺里可以放有关商品，顾客可以浏览店铺里的商品进行购买或者加入购物车，也可以和店家进行沟通，外卖员可以接订单，取消订单，完成订单。管理员可以控制和监管商家和用户的行为（创建、上架、购买、大数据分析等...）。
+本系统是外卖系统，采用C/S结构，语言采用C#制作后端，jsp和web作为前端，分为前端服务功能模块和后端管理功能模块。用户可以分为商户和顾客还有外卖员，商家可以登录、注册、修改虚拟网络店铺，在店铺里可以放有关商品，进行商品管理（查看商品详情、修改商品信息、新建商品、删除商品），切换状态（是否营业），顾客可以浏览店铺里的商品进行提交订单或者加入订单，外卖员可以登录、注册、修改个人信息，切换状态，工资提现，完成/查询/取消订单。管理员可以控制和监管商家和用户的行为（控制顾客、控制商家、控制外卖员、大数据分析等...）。
 
 ### 二、系统主要功能模块
 
 **（用户类型及不同类型用户具备的主要功能模块）**
 
-![img1](./assets/wps1.jpg)
+![image-20221017112457786](assets/image-20221017112457786.png)
 
  
 
@@ -32,83 +32,43 @@
 
 ```sql
 CREATE DATABASE TakeOut
-
 ON PRIMARY
-
 (NAME=TOFile1,
-
 FILENAME='D:\TakeOut\TOFile1.mdf',
-
 SIZE=7MB,
-
 MAXSIZE=40MB,
-
 FILEGROWTH=2MB),
-
- 
 
 FILEGROUP Group1
-
 (NAME=TOGroup1File1,
-
 FILENAME='D:\TakeOut\TOGroup1File1.mdf',
-
 SIZE=4MB,
-
 MAXSIZE=30MB,
-
 FILEGROWTH=1MB),
-
 (NAME=TOGroup1File2,
-
 FILENAME='D:\TakeOut\TOGroup1File2.mdf',
-
 SIZE=5MB,
-
 MAXSIZE=20MB,
-
 FILEGROWTH=2MB),
 
-
-
 FILEGROUP GROUP2
-
 (NAME=TOGroup2File1,
-
 FILENAME='D:\TakeOut\TOGroup2File1.mdf',
-
 SIZE=7MB,
-
 MAXSIZE=20MB,
-
 FILEGROWTH=3MB)
 
- 
-
 LOG ON
-
 (NAME=TOLogFile1,
-
 FILENAME='D:\TakeOut\TOLogFile1.ldf',
-
 SIZE=6MB,
-
 MAXSIZE=50MB,
-
 FILEGROWTH=10%),
-
- 
-
 (NAME=TOLogFile2,
-
 FILENAME='D:\TakeOut\TOLogFile2.ldf',
-
 SIZE=3MB,
-
 MAXSIZE=40MB,
-
 FILEGROWTH=10%)
-
 GO
 ```
 
@@ -128,7 +88,7 @@ GO
 | Saddr    | varchar(50)   |      | Not null       | 商店地址   |
 | Stel     | varchar(12)   |      | Not null       | 商店电话   |
 | Smoney   | decimal(18,2) |      | Not null,0     | 商店营业额 |
-| Sstate   | varchar(20)   |      | Not null       | 商店状态   |
+| Sstate   | varchar(4)    |      | Not null       | 商店状态   |
 
 
 
@@ -164,15 +124,15 @@ GO
 
  
 
-派送员表（Deliever）：存储派送员信息。
+外卖员表（Deliever）：存储外卖员信息。
 
 | 字段名称 | 字段类型      | 键码 | 其它完整性约束 | 属性含义 |
 | -------- | ------------- | ---- | -------------- | -------- |
-| Dno      | varchar(20)   | 主键 |                | 派送员ID |
+| Dno      | varchar(20)   | 主键 |                | 外卖员ID |
 | Dpass    | varchar(20)   |      | Not null       | 登录密码 |
 | Dname    | varchar(50)   |      |                | 姓名     |
 | Dsex     | varchar(2)    |      |                | 性别     |
-| Dstate   | varchar(20)   |      |                | 状态     |
+| Dstate   | varchar(4)    |      |                | 状态     |
 | Ctel     | varchar(12)   |      | Not null       | 电话     |
 | Dmoney   | decimal(18,2) |      | 0              |          |
 
@@ -183,10 +143,10 @@ GO
 | 字段名称 | 字段类型      | 键码 | 其它完整性约束 | 属性含义 |
 | -------- | ------------- | ---- | -------------- | -------- |
 | Ono      | varchar(20)   | 主键 | Not null       | 订单号   |
-| Dno      | varchar(20)   |      |                | 骑手号   |
+| Dno      | varchar(20)   |      |                | 外卖员ID |
 | Cno      | varchar(20)   |      | Not null       | 顾客ID   |
 | Sno      | varchar(20)   |      | Not null       | 商店ID   |
-| Ostate   | varchar(20)   |      | Not null       | 状态     |
+| Ostate   | varchar(8)    |      | Not null       | 状态     |
 | Otip     | varchar(100)  |      | Not null       | 备注     |
 | ODelfee  | decimal(18,2) |      | 0              | 配送费   |
 | Omoney   | decimal(18,2) |      | 0              | 金额     |
