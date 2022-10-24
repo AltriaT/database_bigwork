@@ -8,19 +8,19 @@ namespace Back.ObjClass
 {
     public class Customer:People
     {
-        private double Money;
+        public decimal Money;
         private string Address;
-        public Customer(string pno, string name, string password, string phoneNumber, string sex, string address, double money=0) : base(pno, name, password, phoneNumber, sex)
+        public Customer(string pno, string name, string password, string phoneNumber, string sex, string address, decimal money=0m) : base(pno, name, password, phoneNumber, sex)
         {
             Address = address;
             Money = money;
         }
 
-        public void SetMoney(double money)
+        public void SetMoney(decimal money)
         {
             this.Money = money;
         }
-        public double GetMoney()
+        public decimal GetMoney()
         {
             return Money;
         }

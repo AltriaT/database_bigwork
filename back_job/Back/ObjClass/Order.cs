@@ -13,14 +13,14 @@ namespace Back.ObjClass
         private string Cno;
         private string Ostate;
         private string Otip;
-        private double ODelfee;
-        private double Omoney;
+        public decimal ODelfee;
+        public decimal Omoney;
         private string Obtime;
 
         //Purchase购买的东西
         public Dictionary<Goods,int> Purchase=new Dictionary<Goods, int>();
 
-        public Order(string ono, string dno, string cno, string ostate, string otip="null", double oDelfee=0, double omoney=0)
+        public Order(string ono, string dno, string cno,string sno, string ostate, string otip="null", decimal oDelfee=0, decimal omoney=0)
         {
             Ono = ono;
             Dno = dno;
@@ -41,10 +41,10 @@ namespace Back.ObjClass
         public string GetOstate() { return Ostate; }
         public void SetOtip(string tip) { Otip = tip; }
         public string GetOtip() { return Otip; }
-        public void SetODelfee(double fee) { ODelfee = fee; }
-        public double GetOdelfee() { return ODelfee; }
-        public void SetOmoney(double money) { Omoney = money; }
-        public double GetOmoney() { return Omoney; }
+        public void SetODelfee(decimal fee) { ODelfee = fee; }
+        public decimal GetOdelfee() { return ODelfee; }
+        public void SetOmoney(decimal money) { Omoney = money; }
+        public decimal GetOmoney() { return Omoney; }
         public void SetObtime(string time){ Obtime = time; }
         public string GetObtime() { return Obtime; }
 

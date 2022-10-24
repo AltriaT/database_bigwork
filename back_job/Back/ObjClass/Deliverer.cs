@@ -8,21 +8,21 @@ namespace Back.ObjClass
 {
     public class Deliverer:People
     {
-        private double Money;
+        public decimal Money;
         private string State;
         
-        public Deliverer(string pno, string name, string password, string phoneNumber, string sex, string state, double money=0) :base(pno, name, password, phoneNumber, sex)
+        public Deliverer(string pno, string name, string password, string phoneNumber, string sex, string state, decimal money=0) :base(pno, name, password, phoneNumber, sex)
         {
             Money = money;
             State = state;
         }
         
-        public void SetMoney(double money)
+        public void SetMoney(decimal money)
         {
             Money=money;
         }
 
-        public double GetMoney()
+        public decimal GetMoney()
         {
             return Money;
         }
