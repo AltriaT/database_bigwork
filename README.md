@@ -6,7 +6,7 @@
 
 **（概括性介绍应用系统的意义，体系结构，开发及运行所需的软件环境，用户类型及各类用户具备的主要功能模块）**
 
-本系统是外卖系统，采用C/S结构，语言采用C#制作后端，jsp和web作为前端，分为前端服务功能模块和后端管理功能模块。用户可以分为商户和顾客还有外卖员，商家可以登录、注册、修改虚拟网络店铺，在店铺里可以放有关商品，进行商品管理（查看商品详情、修改商品信息、新建商品、删除商品），切换状态（是否营业），顾客可以浏览店铺里的商品进行提交订单或者加入订单，外卖员可以登录、注册、修改个人信息，切换状态，工资提现，完成/查询/取消订单。管理员可以控制和监管商家和用户的行为（控制顾客、控制商家、控制外卖员、大数据分析等...）。
+本系统是外卖系统，采用C/S结构，使用C#制作后端，winform开发窗体应用，分为前端服务功能模块和后端管理功能模块。用户分为商户、顾客和外卖员，商家可以登录、注册、修改虚拟网络店铺，在店铺里可以放有关商品，进行商品管理（查看商品详情、修改商品信息、新建商品、删除商品），切换状态（是否营业），顾客可以浏览店铺里的商品进行提交订单或者加入订单，外卖员可以登录、注册、修改个人信息，切换状态，工资提现，完成/查询/取消订单。除了用户之外，系统还设置了管理员来控制和监管商家和用户的行为（控制顾客、控制商家、控制外卖员、大数据分析等...）。
 
 ### 二、系统主要功能模块
 
@@ -84,11 +84,11 @@ GO
 | -------- | ------------- | ---- | -------------- | ---------- |
 | Sno      | varchar(20)   | 主键 | Not null       | 商店号     |
 | Spass    | varchar(20)   |      | Not null       | 商店密码   |
-| Sname    | varchar(50)   |      | Not null       | 商店名称   |
+| Sname    | varchar(30)   |      | Not null       | 商店名称   |
 | Saddr    | varchar(50)   |      | Not null       | 商店地址   |
 | Stel     | varchar(12)   |      | Not null       | 商店电话   |
 | Smoney   | decimal(18,2) |      | Not null,0     | 商店营业额 |
-| Sstate   | varchar(4)    |      | Not null       | 商店状态   |
+| Sstate   | char(4)       |      | Not null       | 商店状态   |
 
 
 
@@ -100,7 +100,7 @@ GO
 | -------- | ------------- | ---- | -------------- | -------- |
 | Gno      | varchar(20)   | 主键 | Not null       | 商品编号 |
 | Sno      | varchar(20)   |      | Not null       | 商店编号 |
-| Gname    | varchar(50)   |      | Not null       | 商品名称 |
+| Gname    | varchar(30)   |      | Not null       | 商品名称 |
 | Gprice   | decimal(18,2) |      | Not null,0     | 商品价格 |
 | Gstock   | int           |      | Not null       | 商品库存 |
 
@@ -114,8 +114,8 @@ GO
 | -------- | ------------- | ---- | -------------- | -------- |
 | Cno      | varchar(20)   | 主键 |                | 顾客ID   |
 | Cpass    | varchar(20)   |      | Not null       | 登录密码 |
-| Cname    | varchar(50)   |      |                | 姓名     |
-| Csex     | varchar(2)    |      |                | 性别     |
+| Cname    | varchar(30)   |      |                | 姓名     |
+| Csex     | char(2)       |      |                | 性别     |
 | Caddress | varchar(50)   |      |                | 地址     |
 | Ctel     | varchar(12)   |      | Not null       | 电话     |
 | Cmoney   | decimal(18,2) |      | 0              |          |
@@ -130,9 +130,9 @@ GO
 | -------- | ------------- | ---- | -------------- | -------- |
 | Dno      | varchar(20)   | 主键 |                | 外卖员ID |
 | Dpass    | varchar(20)   |      | Not null       | 登录密码 |
-| Dname    | varchar(50)   |      |                | 姓名     |
-| Dsex     | varchar(2)    |      |                | 性别     |
-| Dstate   | varchar(4)    |      |                | 状态     |
+| Dname    | varchar(30)   |      |                | 姓名     |
+| Dsex     | char(2)       |      |                | 性别     |
+| Dstate   | char(4)       |      |                | 状态     |
 | Ctel     | varchar(12)   |      | Not null       | 电话     |
 | Dmoney   | decimal(18,2) |      | 0              |          |
 
@@ -146,7 +146,7 @@ GO
 | Dno      | varchar(20)   |      |                | 外卖员ID |
 | Cno      | varchar(20)   |      | Not null       | 顾客ID   |
 | Sno      | varchar(20)   |      | Not null       | 商店ID   |
-| Ostate   | varchar(8)    |      | Not null       | 状态     |
+| Ostate   | char(8)       |      | Not null       | 状态     |
 | Otip     | varchar(100)  |      | Not null       | 备注     |
 | ODelfee  | decimal(18,2) |      | 0              | 配送费   |
 | Omoney   | decimal(18,2) |      | 0              | 金额     |

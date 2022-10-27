@@ -11,6 +11,10 @@ namespace Back.ObjClass
         public decimal Money;
         private string State;
         
+        public Deliverer()
+        {
+
+        }
         public Deliverer(string pno, string name, string password, string phoneNumber, string sex, string state, decimal money=0) :base(pno, name, password, phoneNumber, sex)
         {
             Money = money;
@@ -36,6 +40,9 @@ namespace Back.ObjClass
         {
             return State;
         }
-
+        public string toString()
+        {
+            return GetPno() + GetName() + GetPhoneNumber() + GetState();
+        }
     }
 }

@@ -7,20 +7,23 @@ using System.Threading.Tasks;
 
 namespace Back.ObjClass
 {
-    public class Shop
+    public class Store
     {
         private string Sno;
         private string Spass;
         private string Sname;
         private string Saddr;
         private string Stel;
-        private double Smoney;
+        public decimal Smoney;
         private string State;
 
         //Goods此商店的商品列表
-        public List<Goods> Goods = new List<Goods>();
+        public Dictionary<string,Goods> Goodses = new Dictionary<string, Goods>();
+        public Store()
+        {
 
-        public Shop(string Sno,string Spass,string Sname,string Saddr,string Stel,double Smoney,string State)
+        }
+        public Store(string Sno,string Spass,string Sname,string Saddr,string Stel,decimal Smoney,string State)
         {
             this.Sno = Sno;
             this.Spass = Spass;
@@ -79,11 +82,11 @@ namespace Back.ObjClass
             return this.Stel;
         }
 
-        public void SetSmoney(double money)
+        public void SetSmoney(decimal money)
         {
             this.Smoney = money;
         }
-        public double GetSmoney()
+        public decimal GetSmoney()
         {
             return this.Smoney;
         }
@@ -94,6 +97,13 @@ namespace Back.ObjClass
         public string GetState()
         {
             return this.State;
+        }
+        ///<summary>
+        ///添加商品
+        ///</summary>
+        public void AddGoods(Goods goods)
+        {
+            Goodses.Add(goods.GetGno(), goods);
         }
     }
 }

@@ -14,6 +14,10 @@ namespace Back.ObjClass
         private string? PhoneNumber;
         private string? Sex;
 
+        public People()
+        {
+
+        }
         public People(string pno, string name, string password, string phoneNumber, string sex)
         {
             Pno = pno;
@@ -64,7 +68,7 @@ namespace Back.ObjClass
         {
             Sex= sex;
         }
-        public string? GetSex(string sex)
+        public string? GetSex()
         {
             return Sex;
         }

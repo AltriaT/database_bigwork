@@ -32,6 +32,9 @@ namespace Back.ObjClass
         {
             return Address;
         }
-
+        public string toString()
+        {
+            return GetPno() + GetName() + GetSex();
+        }
     }
 }

@@ -33,6 +33,6 @@ namespace Back.ObjClass
         public decimal GetGprice() { return Gprice; }
         public void SetGstock(int gstock) { this.Gstock = gstock; }
         public int GetGstock() { return Gstock; }
-        
+
     }
 }
