@@ -78,7 +78,7 @@ namespace WindowsFormsApp1
         public void Buy_Load(object sender, EventArgs e)
         {
             // TODO: 这行代码将数据加载到表“takeOutDataSet.goods”中。您可以根据需要移动或移除它。
-            this.goodsTableAdapter.Fill(goodsfa.GetAllGoods());
+            
             //System.Threading.Thread.Sleep(1000);
             //form_Resize.X=this.Width;
             //form_Resize.Y=this.Height;
@@ -108,17 +108,6 @@ namespace WindowsFormsApp1
 
         }
 
-        private void fillByToolStripButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.goodsTableAdapter.FillBy(this.takeOutDataSet.goods);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
+       
     }
 }

@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -92,11 +93,6 @@
     </Compile>
     <Compile Include="Order.Designer.cs">
       <DependentUpon>Order.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SSCSDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SSCSDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="TakeOutDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -178,17 +174,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="SSCSDataSet.xsc">
-      <DependentUpon>SSCSDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="SSCSDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>SSCSDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="SSCSDataSet.xss">
-      <DependentUpon>SSCSDataSet.xsd</DependentUpon>
-    </None>
     <None Include="TakeOutDataSet.xsc">
       <DependentUpon>TakeOutDataSet.xsd</DependentUpon>
     </None>

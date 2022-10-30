@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Back.ObjClass;
-using static System.Formats.Asn1.AsnWriter;
+//using static System.Formats.Asn1.AsnWriter;
 
 namespace Back.SqlConn.Op
 {
