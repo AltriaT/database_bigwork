@@ -20,3 +20,11 @@ D:\myStudy\大三啊啊要毕业了\数据库\BIG_WORK\back_job\Back\obj\Debug\n
 D:\myStudy\大三啊啊要毕业了\数据库\BIG_WORK\back_job\Back\obj\Debug\net6.0\Back.pdb
 D:\myStudy\大三啊啊要毕业了\数据库\BIG_WORK\back_job\Back\obj\Debug\net6.0\Back.genruntimeconfig.cache
 D:\myStudy\大三啊啊要毕业了\数据库\BIG_WORK\back_job\Back\obj\Debug\net6.0\ref\Back.dll
+D:\GitUpload\database_bigwork\back_job\Back\obj\Debug\net6.0\Back.csproj.AssemblyReference.cache
+D:\GitUpload\database_bigwork\back_job\Back\obj\Debug\net6.0\Back.GeneratedMSBuildEditorConfig.editorconfig
+D:\GitUpload\database_bigwork\back_job\Back\obj\Debug\net6.0\Back.AssemblyInfoInputs.cache
+D:\GitUpload\database_bigwork\back_job\Back\obj\Debug\net6.0\Back.AssemblyInfo.cs
+D:\GitUpload\database_bigwork\back_job\Back\obj\Debug\net6.0\Back.csproj.CoreCompileInputs.cache
+D:\GitUpload\database_bigwork\back_job\Back\obj\Debug\net6.0\Back.dll
+D:\GitUpload\database_bigwork\back_job\Back\obj\Debug\net6.0\refint\Back.dll
+D:\GitUpload\database_bigwork\back_job\Back\obj\Debug\net6.0\Back.pdb

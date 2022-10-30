@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\myStudy\\大三啊啊要毕业了\\数据库\\BIG_WORK\\back_job\\Back\\Back.csproj": {}
+    "D:\\GitUpload\\database_bigwork\\back_job\\Back\\Back.csproj": {}
   },
   "projects": {
-    "D:\\myStudy\\大三啊啊要毕业了\\数据库\\BIG_WORK\\back_job\\Back\\Back.csproj": {
+    "D:\\GitUpload\\database_bigwork\\back_job\\Back\\Back.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\myStudy\\大三啊啊要毕业了\\数据库\\BIG_WORK\\back_job\\Back\\Back.csproj",
+        "projectUniqueName": "D:\\GitUpload\\database_bigwork\\back_job\\Back\\Back.csproj",
         "projectName": "Back",
-        "projectPath": "D:\\myStudy\\大三啊啊要毕业了\\数据库\\BIG_WORK\\back_job\\Back\\Back.csproj",
-        "packagesPath": "C:\\Users\\11654\\.nuget\\packages\\",
-        "outputPath": "D:\\myStudy\\大三啊啊要毕业了\\数据库\\BIG_WORK\\back_job\\Back\\obj\\",
+        "projectPath": "D:\\GitUpload\\database_bigwork\\back_job\\Back\\Back.csproj",
+        "packagesPath": "C:\\Users\\27130\\.nuget\\packages\\",
+        "outputPath": "D:\\GitUpload\\database_bigwork\\back_job\\Back\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\virual st\\3\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\11654\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\27130\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,7 +31,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\GitUpload\\database_bigwork\\client_job\\WindowsFormsApp1\\WindowsFormsApp1.csproj": {
+                "projectPath": "D:\\GitUpload\\database_bigwork\\client_job\\WindowsFormsApp1\\WindowsFormsApp1.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -51,8 +59,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -61,8 +68,23 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
+      }
+    },
+    "D:\\GitUpload\\database_bigwork\\client_job\\WindowsFormsApp1\\WindowsFormsApp1.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\GitUpload\\database_bigwork\\client_job\\WindowsFormsApp1\\WindowsFormsApp1.csproj",
+        "projectName": "WindowsFormsApp1",
+        "projectPath": "D:\\GitUpload\\database_bigwork\\client_job\\WindowsFormsApp1\\WindowsFormsApp1.csproj",
+        "frameworks": {
+          "net48": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net48": {}
       }
     }
   }

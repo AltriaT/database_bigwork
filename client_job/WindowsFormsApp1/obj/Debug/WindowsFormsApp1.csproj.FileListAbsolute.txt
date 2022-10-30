@@ -1,0 +1,41 @@
+D:\Vs work\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+D:\Vs work\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+D:\Vs work\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+D:\Vs work\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.AssemblyReference.cache
+D:\Vs work\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.SuggestedBindingRedirects.cache
+D:\Vs work\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+D:\Vs work\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+D:\Vs work\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+D:\Vs work\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+D:\Vs work\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+D:\Vs work\WindowsFormsApp1\bin\Debug\CSkin.dll
+D:\Vs work\WindowsFormsApp1\bin\Debug\CSkin.xml
+D:\Vs work\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
+D:\Vs work\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Login.resources
+D:\Vs work\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Register.resources
+D:\Vs work\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Set.resources
+D:\Vs work\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Main_Customer.resources
+D:\Vs work\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Buy.resources
+D:\Vs work\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Trolley.resources
+D:\Vs work\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Order.resources
+D:\Vs work\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.PersonInfo.resources
+D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\bin\Debug\CSkin.xml
+D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.AssemblyReference.cache
+D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.SuggestedBindingRedirects.cache
+D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Login.resources
+D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Main_Customer.resources
+D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Order.resources
+D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.PersonInfo.resources
+D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Trolley.resources
+D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Register.resources
+D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Set.resources
+D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Buy.resources
+D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
