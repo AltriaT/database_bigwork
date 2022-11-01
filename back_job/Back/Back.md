@@ -39,3 +39,5 @@ fa.XXX();
 要想保存基本类的信息需要使用操作类的方法传入到数据库里。
 
 当获取时需要从数据库里的表项需要创建相关基本类，然后将用接口传入基本类中
+
+先将Customer接口添加上状态码返回功能，表明这个功能是否返回正确，若错误则可查阅微软官方状态码解释来处理https://learn.microsoft.com/zh-cn/sql/relational-databases/errors-events/database-engine-events-and-errors?view=sql-server-ver16
