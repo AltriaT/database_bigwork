@@ -147,5 +147,9 @@ namespace Back.SqlConn.Op
             }
             conn.Close();
         }
+        //public static void Main()
+        //{
+        //    Order order = new Order("002", null, "001", "001", "订单完成");
+        //}
     }
 }

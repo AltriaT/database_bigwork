@@ -64,20 +64,20 @@ namespace Back.SqlConn.Op
             cmd.ExecuteNonQuery();
             conn.Close();
         }
-        public static void Main()
-        {
-            Delivererfa delivererfa = new DelivererSqlOp();
-            Deliverer deliverer = new Deliverer("003","玛琪玛","123","65431","F", "正在配送", 0);
-            //Deliverer deliverer = new Deliverer("003", "玛琪玛", "123", "65431", "F", "正在配送", 0);
-            //delivererfa.InsertOneDeliverer(deliverer);
-            //Deliverer deliverer = delivererfa.GetOneDeliverer("003");
-            delivererfa.DeleteOneDeliverer(deliverer);
-            //delivererfa.InsertOneDeliverer(deliverer);
-            Dictionary<string, Deliverer> deliverers = delivererfa.GetAllDeliverer();
-            foreach (Deliverer deliverer1 in deliverers.Values)
-            {
-                Console.WriteLine(deliverer1.toString());
-            }
-        }
+        //public static void Main()
+        //{
+        //    Delivererfa delivererfa = new DelivererSqlOp();
+        //    Deliverer deliverer = new Deliverer("003","玛琪玛","123","65431","F", "正在配送", 0);
+        //    //Deliverer deliverer = new Deliverer("003", "玛琪玛", "123", "65431", "F", "正在配送", 0);
+        //    //delivererfa.InsertOneDeliverer(deliverer);
+        //    //Deliverer deliverer = delivererfa.GetOneDeliverer("003");
+        //    delivererfa.DeleteOneDeliverer(deliverer);
+        //    //delivererfa.InsertOneDeliverer(deliverer);
+        //    Dictionary<string, Deliverer> deliverers = delivererfa.GetAllDeliverer();
+        //    foreach (Deliverer deliverer1 in deliverers.Values)
+        //    {
+        //        Console.WriteLine(deliverer1.toString());
+        //    }
+        //}
     }
 }

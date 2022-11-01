@@ -11,7 +11,7 @@ namespace Back.ObjClass
         private string Pno;
         private string Name;
         private string Password;
-        private string? PhoneNumber;
+        private string PhoneNumber;
         private string? Sex;
 
         public People()
@@ -59,7 +59,7 @@ namespace Back.ObjClass
         {
             PhoneNumber = phonenumber;
         }
-        public string? GetPhoneNumber()
+        public string GetPhoneNumber()
         {
             return PhoneNumber;
         }

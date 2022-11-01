@@ -13,15 +13,16 @@ namespace Back.ObjClass
         private string Gname;
         public decimal Gprice;
         public int Gstock;
-        private byte[] img;
+        private byte[]? Gimg;
 
-        public Goods(string gno, string sno, string gname, decimal gprice, int gstock)
+        public Goods(string gno, string sno, string gname, decimal gprice, int gstock, byte[]? img=null)
         {
             Gno = gno;
             Sno = sno;
             Gname = gname;
             Gprice = gprice;
             Gstock = gstock;
+            Gimg = img;
         }
         public void SetGno(string gno) { Gno = gno; }
         public string GetGno() { return Gno; }
@@ -33,6 +34,7 @@ namespace Back.ObjClass
         public decimal GetGprice() { return Gprice; }
         public void SetGstock(int gstock) { this.Gstock = gstock; }
         public int GetGstock() { return Gstock; }
-
+        public byte[]? GetImg() { return Gimg; }
+        public void SetImg(byte[]? img) { Gimg = img; }
     }
 }
