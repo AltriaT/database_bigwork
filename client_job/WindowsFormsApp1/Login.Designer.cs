@@ -101,7 +101,7 @@
             this.button1.TabIndex = 18;
             this.button1.Text = "登录";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
@@ -114,6 +114,8 @@
             this.textBox1.Size = new System.Drawing.Size(166, 23);
             this.textBox1.TabIndex = 26;
             this.textBox1.Text = "输入手机号";
+            this.textBox1.GotFocus+=new System.EventHandler(textBox1_Enter);
+            this.textBox1.LostFocus += new System.EventHandler(textBox1_Leave);
             // 
             // textBox2
             // 
@@ -126,6 +128,8 @@
             this.textBox2.Size = new System.Drawing.Size(166, 23);
             this.textBox2.TabIndex = 26;
             this.textBox2.Text = "输入密码";
+            this.textBox2.GotFocus+=new System.EventHandler(textBox2_Enter);
+            this.textBox2.LostFocus+=new System.EventHandler(textBox2_Leave);
             // 
             // button3
             // 
@@ -194,7 +198,9 @@
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "您吃了吗？";
-            this.Resize += new System.EventHandler(this.Form1_Resize);
+            // this.Resize += new System.EventHandler(this.Form1_Resize);
+            this.Load += Form1_Load;
+            this.FormClosed += Form1_FormClosed;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

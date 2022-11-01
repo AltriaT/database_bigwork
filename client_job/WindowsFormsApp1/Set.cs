@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Back.ObjClass;
+using Back.SqlConn.Op;
+using Back.SqlConn;
 
 namespace WindowsFormsApp1
 {
@@ -60,8 +63,10 @@ namespace WindowsFormsApp1
         {
             if (MessageBox.Show("确定要注销账号吗？", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-
-                Application.Exit();
+                Customerfa customerfa = new CustomerSqlOp();
+                Customer customer = customerfa.GetOneCustomer(Login.username);
+                customerfa.DeleteOneCustomer(customer);
+                Application.Restart();
             }
         }
 
@@ -91,6 +96,12 @@ namespace WindowsFormsApp1
             //form_Resize.setControls(newx, newy, this);
             //this.Text = this.Width.ToString() + " " + this.Height.ToString();
 
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            Password password=new Password();
+            Control_Add(password);
         }
     }
 }

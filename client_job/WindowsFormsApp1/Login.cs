@@ -20,8 +20,9 @@ namespace WindowsFormsApp1
     {
         public Boolean exist=false;
 
-        String username;
-        String password;
+        public static String username;
+        public static String password;
+        public static Dictionary<string, Customer> dic = new Dictionary<string, Customer>();
         Customer customer=null;
         Customerfa customerfa=new CustomerSqlOp();
         String pno = "001";
@@ -44,7 +45,7 @@ namespace WindowsFormsApp1
             if (textBox1.Text == "")
             {
                 textBox1.Text = "输入手机号";
-                textBox1.ForeColor = Color.White;
+                textBox1.ForeColor = Color.Black;
                 textboxHasText = false;
             }
             else
@@ -57,7 +58,7 @@ namespace WindowsFormsApp1
             if (textboxHasText == false)
                 textBox1.Text = "";
 
-            textBox1.ForeColor = Color.White;
+            textBox1.ForeColor = Color.Black;
 
         }
 
@@ -70,7 +71,7 @@ namespace WindowsFormsApp1
             if (textBox2.Text == "")
             {
                 textBox2.Text = "输入密码";
-                textBox2.ForeColor = Color.White;
+                textBox2.ForeColor = Color.Black;
                 flag = false;
             }
             else
@@ -81,7 +82,7 @@ namespace WindowsFormsApp1
         {
             if (flag==false)
                 textBox2.Text = "";
-            textBox2.ForeColor = Color.White;
+            textBox2.ForeColor = Color.Black;
         }
 
 
@@ -109,15 +110,35 @@ namespace WindowsFormsApp1
             }
             else                                           //都填了数据，开始正式登录
             {
-                Dictionary<string, Customer> dic = new Dictionary<string, Customer>();
+                
                 dic = customerfa.GetAllCustomer();
                 if(dic.Count==0)
                 {
                     MessageBox.Show("该号码尚未注册，请前往注册", "注册提醒");
                 }
-                else
+                else                         //顾客表不为空 
                 {
-                   // if()
+                    if (dic.ContainsKey(textBox1.Text))         //表中存在该手机号
+                    {
+                        dic.TryGetValue(textBox1.Text, out customer);
+                        if (customer.GetPassword()==password)
+                        {
+                            username = textBox1.Text;
+                            
+                            Main_Customer main_Customer = new Main_Customer();
+                            main_Customer.Show();
+                            exist = true;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("密码错误!", "登录提醒");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("该号码尚未注册，请前往注册", "注册提醒");
+                    }
                 }
             }
         }

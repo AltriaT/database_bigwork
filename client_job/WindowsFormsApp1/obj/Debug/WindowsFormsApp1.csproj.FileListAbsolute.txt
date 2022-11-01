@@ -39,3 +39,4 @@ D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\obj\Debug\WindowsForms
 D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
 D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
 D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
+D:\GitUpload\database_bigwork\client_job\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Password.resources
