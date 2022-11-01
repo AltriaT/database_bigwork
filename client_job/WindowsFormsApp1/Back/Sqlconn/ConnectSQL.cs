@@ -9,7 +9,7 @@ namespace Back.SqlConn
 {
     public class ConnectSQL
     {
-        string ConnectStr = "Server=(local);database=TakeOut;password=123;user id=sa;";
+        string ConnectStr = "Server=(local);database=TakeOut;password=zt123456;user id=sa;";
         
         public SqlConnection Connect()
         {

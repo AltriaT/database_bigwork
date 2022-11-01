@@ -8,16 +8,23 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Back.ObjClass;
+using Back.SqlConn.Op;
+using Back.SqlConn;
 namespace WindowsFormsApp1
 {
     
+    
+
     public partial class Login : Form
     {
         public Boolean exist=false;
 
         String username;
         String password;
+        Customer customer=null;
+        Customerfa customerfa=new CustomerSqlOp();
+        String pno = "001";
 
         public Login()
         {
@@ -77,6 +84,8 @@ namespace WindowsFormsApp1
             textBox2.ForeColor = Color.White;
         }
 
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             username = textBox1.Text;
@@ -97,6 +106,19 @@ namespace WindowsFormsApp1
             else if(password =="输入密码"||password.Length==0)
             {
                 MessageBox.Show("请输入密码", "登录提示");
+            }
+            else                                           //都填了数据，开始正式登录
+            {
+                Dictionary<string, Customer> dic = new Dictionary<string, Customer>();
+                dic = customerfa.GetAllCustomer();
+                if(dic.Count==0)
+                {
+                    MessageBox.Show("该号码尚未注册，请前往注册", "注册提醒");
+                }
+                else
+                {
+                   // if()
+                }
             }
         }
 

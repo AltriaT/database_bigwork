@@ -32,7 +32,7 @@ namespace Back.SqlConn.Op
             while (reader.Read())
             {
                 Customer customer = new Customer(reader.GetString(0), reader.GetString(2), reader.GetString(1), reader.GetString(5), reader.GetString(3), reader.GetString(4), reader.GetDecimal(6));
-                customers.Add(reader.GetString(0), customer);
+                customers.Add(customer.GetPhoneNumber(), customer);
             }
             conn.Close();
             return customers;

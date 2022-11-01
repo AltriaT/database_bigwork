@@ -14,5 +14,8 @@ namespace Back.SqlConn
         public void InsertOneCustomer(Customer customer);
         public void UpdateOneCustomer(Customer customer);
         public void DeleteOneCustomer(Customer customer);
+
+        
+        
     }
 }

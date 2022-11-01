@@ -7,12 +7,18 @@ using System.Drawing;
 using System.ComponentModel;
 using System.Text;
 using System.IO;
+using Back.ObjClass;
+using Back.SqlConn.Op;
+using Back.SqlConn;
+
 namespace WindowsFormsApp1
 {
 
   
     public static class Program
     {
+
+        static Goodsfa Goodsfa = new GoodsSqlOp();
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
@@ -24,8 +30,11 @@ namespace WindowsFormsApp1
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            foreach(Goods goods in Goodsfa.GetAllGoods().Values)
+            {
+                Console.WriteLine(goods.ToString());
+            }
            
-            
 
             Login login = new Login();
 

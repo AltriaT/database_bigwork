@@ -12,6 +12,11 @@ namespace Back.SqlConn.Op
 {
     public class OrderSqlOp:Orderfa
     {
+        /// <summary>
+        /// 根据Ono获得一个订单
+        /// </summary>
+        /// <param name="Ono"></param>
+        /// <returns></returns>
         public Order GetOneOrder(string Ono)
         {
             SqlConnection conn = new ConnectSQL().Connect();
@@ -24,6 +29,12 @@ namespace Back.SqlConn.Op
             conn.Close();
             return order;
         }
+
+        /// <summary>
+        /// 根据Sno获得所有的订单
+        /// </summary>
+        /// <param name="sno"></param>
+        /// <returns>字典key=Ono value=Order</returns>
         public Dictionary<string, Order> GetAllOrder(string sno)
         {
             Dictionary<string, Order> orders = new Dictionary<string, Order>();
@@ -39,6 +50,10 @@ namespace Back.SqlConn.Op
             conn.Close();
             return orders;
         }
+        /// <summary>
+        /// 插入一个订单
+        /// </summary>
+        /// <param name="order"></param>
         public void InsertOneOrder(Order order)
         {
             SqlConnection conn = new ConnectSQL().Connect();
@@ -51,6 +66,10 @@ namespace Back.SqlConn.Op
             cmd.ExecuteNonQuery();
             conn.Close();
         }
+        /// <summary>
+        /// 更新一个订单
+        /// </summary>
+        /// <param name="order"></param>
         public void UpdateOneOrder(Order order)
         {
             SqlConnection conn = new ConnectSQL().Connect();
@@ -60,6 +79,10 @@ namespace Back.SqlConn.Op
             cmd.ExecuteNonQuery();
             conn.Close();
         }
+        /// <summary>
+        /// 删除一个订单
+        /// </summary>
+        /// <param name="order"></param>
         public void DeleteOneOrder(Order order)
         {
             SqlConnection conn = new ConnectSQL().Connect();
@@ -69,6 +92,11 @@ namespace Back.SqlConn.Op
             Console.WriteLine(cmd.CommandText);
         }
         //购买操作
+        /// <summary>
+        /// 获得购物车中的所有商品和商品数量
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns>字典 key=商品，value=数量</returns>
         public Dictionary<Goods,int> GetPurchase(Order order)
         {
             Dictionary<Goods,int> result = new Dictionary<Goods,int>();
@@ -83,6 +111,10 @@ namespace Back.SqlConn.Op
             }
             return result;
         }
+        /// <summary>
+        /// 将购买的物品插入到购买表里
+        /// </summary>
+        /// <param name="order"></param>
         public void InsertGoodsIntoPurchase(Order order)
         {
             SqlConnection conn = new ConnectSQL().Connect();
@@ -97,6 +129,10 @@ namespace Back.SqlConn.Op
             }
             conn.Close();
         }
+        /// <summary>
+        /// 将购买表里的物品更新
+        /// </summary>
+        /// <param name="order"></param>
         public void UpdateGoodsIntoPurchase(Order order)
         {
             SqlConnection conn = new ConnectSQL().Connect();
