@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RXGvc6Br5kwNJgY0kV5/qpshHpviHJ5WRZarDcB8M49jsWeNRolGsuOQKg4M2XM6Xh/eSVUY+Fm0WoBdtNrLXQ==",
+  "dgSpecHash": "i1cHBmxn4y+0GAUbWv5r7VexF/a/PnD8PinheEBMl6sC5RUNYpfL2Mww6O//3J2WypBEdeq/7iB+Nen7cWwqrg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\11654\\Desktop\\database_bigwork-zt\\back_job\\Back\\Back.csproj",
+  "projectFilePath": "D:\\myStudy\\大三啊啊要毕业了\\数据库\\BIG_WORK\\back_job\\Back\\Back.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\11654\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\11654\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

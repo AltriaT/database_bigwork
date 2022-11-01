@@ -147,16 +147,16 @@ namespace Back.SqlConn.Op
             }
             return list;
         }
-        private static void Main()
-        {
-            GoodsSqlOp op = new GoodsSqlOp();
-            Goods goods = new Goods("003", "001", "甜甜鸡", 15, 5);
-            MyImgOp imgop = new MyImgOp();
-            byte[] img = imgop.TurnImgToByte(@"D:\myStudy\大三啊啊要毕业了\数据库\BIG_WORK\img\kitty.jpg");
-            goods.SetImg(img);
-            op.InsertOneGoods(goods);
-            //op.DeleteOneGoods(goods);
-            //Dictionary<string, Goods> goodses = op.GetAllGoods();
-        }
+        //private static void Main()
+        //{
+        //    GoodsSqlOp op = new GoodsSqlOp();
+        //    Goods goods = new Goods("003", "001", "甜甜鸡", 15, 5);
+        //    MyImgOp imgop = new MyImgOp();
+        //    byte[] img = imgop.TurnImgToByte(@"D:\myStudy\大三啊啊要毕业了\数据库\BIG_WORK\img\kitty.jpg");
+        //    goods.SetImg(img);
+        //    op.InsertOneGoods(goods);
+        //    //op.DeleteOneGoods(goods);
+        //    //Dictionary<string, Goods> goodses = op.GetAllGoods();
+        //}
     }
 }

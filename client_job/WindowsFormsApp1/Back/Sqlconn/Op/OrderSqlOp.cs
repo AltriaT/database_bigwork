@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Back.ObjClass;
-//using static System.Formats.Asn1.AsnWriter;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace Back.SqlConn.Op
 {
@@ -147,5 +147,9 @@ namespace Back.SqlConn.Op
             }
             conn.Close();
         }
+        //public static void Main()
+        //{
+        //    Order order = new Order("002", null, "001", "001", "订单完成");
+        //}
     }
 }

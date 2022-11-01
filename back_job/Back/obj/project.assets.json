@@ -475,11 +475,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\11654\\Desktop\\database_bigwork-zt\\back_job\\Back\\Back.csproj",
+      "projectUniqueName": "D:\\myStudy\\大三啊啊要毕业了\\数据库\\BIG_WORK\\back_job\\Back\\Back.csproj",
       "projectName": "Back",
-      "projectPath": "C:\\Users\\11654\\Desktop\\database_bigwork-zt\\back_job\\Back\\Back.csproj",
+      "projectPath": "D:\\myStudy\\大三啊啊要毕业了\\数据库\\BIG_WORK\\back_job\\Back\\Back.csproj",
       "packagesPath": "C:\\Users\\11654\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\11654\\Desktop\\database_bigwork-zt\\back_job\\Back\\obj\\",
+      "outputPath": "D:\\myStudy\\大三啊啊要毕业了\\数据库\\BIG_WORK\\back_job\\Back\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\11654\\AppData\\Roaming\\NuGet\\NuGet.Config",
