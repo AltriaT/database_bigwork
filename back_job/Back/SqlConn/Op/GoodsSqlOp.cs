@@ -20,7 +20,11 @@ namespace Back.SqlConn.Op
             SqlCommand cmd = new SqlCommand("", conn);
             cmd.CommandText = "select * from goods where Gno='" + gno + "';";
             SqlDataReader reader = cmd.ExecuteReader();
-            Goods goods = new Goods(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetDecimal(3), reader.GetInt32(4));
+            Goods goods=new Goods();
+            if (reader.Read())
+            {
+                 goods= new Goods(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetDecimal(3), reader.GetInt32(4));
+            }
             conn.Close();
             return goods;
         }

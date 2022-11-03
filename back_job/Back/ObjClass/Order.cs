@@ -28,7 +28,14 @@ namespace Back.ObjClass
         public Order(string ono, string? dno, string cno,string sno, string ostate, string otip="null", decimal oDelfee=0, decimal omoney=0)
         {
             Ono = ono;
-            Dno = dno;
+            if (Dno == null)
+            {
+                Dno = "null";
+            }
+            else
+            {
+                Dno = dno;
+            }
             Cno = cno;
             Sno = sno;
             Ostate = ostate;

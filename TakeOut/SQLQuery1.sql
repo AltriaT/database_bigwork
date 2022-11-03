@@ -1,0 +1,43 @@
+CREATE DATABASE TakeOut
+ON PRIMARY
+(NAME=TOFile1,
+FILENAME='D:\aaaaaaasqlwork\TakeOut\TOFile1.mdf',
+SIZE=7MB,
+MAXSIZE=40MB,
+FILEGROWTH=2MB),
+
+FILEGROUP Group1
+(NAME=TOGroup1File1,
+FILENAME='D:\aaaaaaasqlwork\TakeOut\TOGroup1File1.mdf',
+SIZE=4MB,
+MAXSIZE=30MB,
+FILEGROWTH=1MB),
+(NAME=TOGroup1File2,
+FILENAME='D:\aaaaaaasqlwork\TakeOut\TOGroup1File2.mdf',
+SIZE=5MB,
+MAXSIZE=20MB,
+FILEGROWTH=2MB),
+
+FILEGROUP GROUP2
+(NAME=TOGroup2File1,
+FILENAME='D:\aaaaaaasqlwork\TakeOut\TOGroup2File1.mdf',
+SIZE=7MB,
+MAXSIZE=20MB,
+FILEGROWTH=3MB)
+
+LOG ON
+(NAME=TOLogFile1,
+FILENAME='D:\aaaaaaasqlwork\TakeOut\TOLogFile1.ldf',
+SIZE=6MB,
+MAXSIZE=50MB,
+FILEGROWTH=10%),
+
+(NAME=TOLogFile2,
+FILENAME='D:\aaaaaaasqlwork\TakeOut\TOLogFile2.ldf',
+SIZE=6MB,
+MAXSIZE=50MB,
+FILEGROWTH=10%)
+
+GO
+
+

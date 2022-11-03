@@ -41,3 +41,9 @@ fa.XXX();
 当获取时需要从数据库里的表项需要创建相关基本类，然后将用接口传入基本类中
 
 先将Customer接口添加上状态码返回功能，表明这个功能是否返回正确，若错误则可查阅微软官方状态码解释来处理https://learn.microsoft.com/zh-cn/sql/relational-databases/errors-events/database-engine-events-and-errors?view=sql-server-ver16
+
+## 添加
+
+1. 顾客接口可以通过isHave()方法查询是否含有该顾客
+
+2. 

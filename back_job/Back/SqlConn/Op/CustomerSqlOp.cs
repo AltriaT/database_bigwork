@@ -1,9 +1,11 @@
 ﻿using Back.ObjClass;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
+using System.Reflection.Metadata.Ecma335;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -16,17 +18,82 @@ namespace Back.SqlConn.Op
         /*
          * 面向数据库的代码
          */
-        public Customer GetOneCustomer(string Cno)
+        /// <summary>
+        /// 判断是否存在该人物
+        /// </summary>
+        /// <param name="Cno"></param>
+        /// <returns>返回bool变量</returns>
+        public bool IsHave(string Cno)
         {
+            Customer customer = new Customer();
             SqlConnection conn = new ConnectSQL().Connect();
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "select * from Customer where Cno='" + Cno + "';";
-            SqlDataReader reader = cmd.ExecuteReader();
-            reader.Read();
-            Customer customer = new Customer(reader.GetString(0), reader.GetString(2), reader.GetString(1), reader.GetString(5), reader.GetString(3), reader.GetString(4), reader.GetDecimal(6));
-            conn.Close();
+            int flag=0;
+            try
+            {
+                cmd.CommandText = "exec IsHaveCustomer @isHave out,@Pno;";
+                //设置参数值@isHave
+                cmd.Parameters.Add("@isHave", SqlDbType.Int);
+                cmd.Parameters["@isHave"].Value = flag;
+                //设置参数为输出参数
+                cmd.Parameters["@isHave"].Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@Pno", SqlDbType.VarChar);
+                //设置参数值@Pno
+                cmd.Parameters["@Pno"].Value = Cno;
+                //执行
+                cmd.ExecuteNonQuery();
+                //接受参数
+                flag = int.Parse(cmd.Parameters["@isHave"].Value.ToString());
+                //Console.WriteLine(cmd.Parameters["@isHave"].Value);
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            if (flag == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// 查找一个顾客
+        /// </summary>
+        /// <param name="Cno"></param>
+        /// <returns>若找到返回顾客若没找到，在返回一个空的顾客</returns>
+        public Customer GetOneCustomer(string Cno)
+        {
+            Customer customer = new Customer();
+            SqlConnection conn = new ConnectSQL().Connect();
+            try
+            {
+                SqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "select * from Customer where Cno='" + Cno + "';";
+                SqlDataReader reader = cmd.ExecuteReader();
+                if(reader.Read())
+                    customer = new Customer(reader.GetString(0), reader.GetString(2), reader.GetString(1), reader.GetString(5), reader.GetString(3), reader.GetString(4), reader.GetDecimal(6));
+            }
+            catch(SqlException ex)
+            {
+                Console.WriteLine(ex.Number);
+            }
+            finally
+            {
+                conn.Close();
+            }
             return customer;
         }
+        /// <summary>
+        /// 查找所有顾客的信息
+        /// </summary>
+        /// <returns>所有顾客信息，若为空则字典容量为0</returns>
         public Dictionary<string, Customer> GetAllCustomer()
         {
             Dictionary<string, Customer> customers = new Dictionary<string, Customer>();
@@ -121,22 +188,17 @@ namespace Back.SqlConn.Op
             }
             return st;
         }
-        /*
-         * 面向前端的代码
-         */
 
-        public bool Registration_Information_SendTo_SQL(string Pno,string password,string name,string sex)
-        {
-            
-            return true;
-        }
         //public static void Main()
         //{
         //    Customer customer = new Customer("001", "庄颜", "1002", "12354", "女", "地球");
         //    Customerfa customerfa = new CustomerSqlOp();
+        //    //Dictionary<string, Customer> customers;
+        //    //customers = customerfa.GetAllCustomer();
+        //    Console.WriteLine(customerfa.IsHave("18812017120"));
         //    //customerfa.DeleteOneCustomer(customer);
-        //    int st = customerfa.UpdateOneCustomer(customer);
-        //    Console.WriteLine(st);
+        //    //int st = customerfa.UpdateOneCustomer(customer);
+        //    //Console.WriteLine(st);
         //}
     }
 }

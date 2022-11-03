@@ -10,6 +10,7 @@ namespace Back.ObjClass
     {
         public decimal Money;
         private string Address;
+        public Customer() { }
         public Customer(string pno, string name, string password, string phoneNumber, string sex, string address, decimal money=0m) : base(pno, name, password, phoneNumber, sex)
         {
             Address = address;

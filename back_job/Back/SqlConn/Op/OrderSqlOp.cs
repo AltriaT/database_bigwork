@@ -16,7 +16,7 @@ namespace Back.SqlConn.Op
         /// 根据Ono获得一个订单
         /// </summary>
         /// <param name="Ono"></param>
-        /// <returns></returns>
+        /// <returns>返回一个order类</returns>
         public Order GetOneOrder(string Ono)
         {
             SqlConnection conn = new ConnectSQL().Connect();
@@ -29,7 +29,6 @@ namespace Back.SqlConn.Op
             conn.Close();
             return order;
         }
-
         /// <summary>
         /// 根据Sno获得所有的订单
         /// </summary>
@@ -101,7 +100,7 @@ namespace Back.SqlConn.Op
         {
             Dictionary<Goods,int> result = new Dictionary<Goods,int>();
             SqlConnection conn = new ConnectSQL().Connect();
-            SqlCommand cmd = new SqlCommand("select pamount from purchase where Ono='"+order.GetOno()+"';", conn);
+            SqlCommand cmd = new SqlCommand("select * from purchase where Ono='"+order.GetOno()+"';", conn);
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
@@ -147,9 +146,25 @@ namespace Back.SqlConn.Op
             }
             conn.Close();
         }
-        //public static void Main()
-        //{
-        //    Order order = new Order("002", null, "001", "001", "订单完成");
-        //}
+        public static void Main()
+        {
+            Customer customer = new Customer();
+            Customerfa customerfa = new CustomerSqlOp();
+            customer=customerfa.GetOneCustomer("18812017120");
+            Console.WriteLine( customer.toString());
+            Order order = new Order("1", null, "18812017120", "001", "订单完成");
+            Orderfa orderfa = new OrderSqlOp();
+            Goodsfa goodsfa = new GoodsSqlOp();
+            //orderfa.InsertOneOrder(order);
+            //order.Purchase.Add(goodsfa.GetOneGoods("001"),5);
+            //order.Purchase.Add(goodsfa.GetOneGoods("002"), 2);
+            orderfa.InsertGoodsIntoPurchase(order);
+            Dictionary<Goods,int> purchase= orderfa.GetPurchase(order);
+            foreach(Goods goods in purchase.Keys)
+            {
+                Console.WriteLine(goods.GetGname());
+            }
+            customerfa.DeleteOneCustomer(customer);
+        }
     }
 }

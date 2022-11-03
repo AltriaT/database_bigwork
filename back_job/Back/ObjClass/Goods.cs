@@ -15,6 +15,7 @@ namespace Back.ObjClass
         public int Gstock;
         private byte[]? Gimg;
 
+        public Goods() { }
         public Goods(string gno, string sno, string gname, decimal gprice, int gstock, byte[]? img=null)
         {
             Gno = gno;
