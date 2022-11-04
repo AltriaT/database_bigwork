@@ -1,6 +1,7 @@
 ﻿using Back.ObjClass;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,11 +23,23 @@ namespace Back.SqlConn
         /// <returns>返回一个order类</returns>
         public Order GetOneOrder(string Ono);
         /// <summary>
+        /// 根据顾客号找订单
+        /// </summary>
+        /// <param name="Cno"></param>
+        /// <returns></returns>
+        public Order GetOneOrderByCno(string Cno);
+        /// <summary>
         /// 根据Sno获得所有的订单
         /// </summary>
         /// <param name="sno"></param>
         /// <returns>字典key=Ono value=Order</returns>
         public Dictionary<string, Order> GetAllOrder(string sno);
+        /// <summary>
+        /// 根据Cno获得所有的订单
+        /// </summary>
+        /// <param name="Cno"></param>
+        /// <returns>字典key=Ono value=Order</returns>
+        public Dictionary<string, Order> GetAllOrderByCno(string Cno);
         /// <summary>
         /// 插入一个订单
         /// </summary>

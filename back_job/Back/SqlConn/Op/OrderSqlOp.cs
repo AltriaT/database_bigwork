@@ -76,6 +76,23 @@ namespace Back.SqlConn.Op
             return order;
         }
         /// <summary>
+        /// 根据顾客号找订单
+        /// </summary>
+        /// <param name="Cno"></param>
+        /// <returns></returns>
+        public Order GetOneOrderByCno(string Cno)
+        {
+            SqlConnection conn = new ConnectSQL().Connect();
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "select * from orders where Cno='" + Cno + "';";
+            Console.WriteLine(cmd.CommandText);
+            SqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            Order order = new Order(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetDecimal(6), reader.GetDecimal(7));
+            conn.Close();
+            return order;
+        }
+        /// <summary>
         /// 根据Sno获得所有的订单
         /// </summary>
         /// <param name="sno"></param>
@@ -86,6 +103,26 @@ namespace Back.SqlConn.Op
             SqlConnection conn = new ConnectSQL().Connect();
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "select * from orders where Sno='" + sno + "';";
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Order order = new Order(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetDecimal(6), reader.GetDecimal(7));
+                orders.Add(order.GetOno(), order);
+            }
+            conn.Close();
+            return orders;
+        }
+        /// <summary>
+        /// 根据Cno获得所有的订单
+        /// </summary>
+        /// <param name="Cno"></param>
+        /// <returns>字典key=Ono value=Order</returns>
+        public Dictionary<string, Order> GetAllOrderByCno(string Cno)
+        {
+            Dictionary<string, Order> orders = new Dictionary<string, Order>();
+            SqlConnection conn = new ConnectSQL().Connect();
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "select * from orders where Cno='" + Cno + "';";
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
