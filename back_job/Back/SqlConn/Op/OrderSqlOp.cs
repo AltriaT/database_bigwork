@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -12,6 +13,51 @@ namespace Back.SqlConn.Op
 {
     public class OrderSqlOp:Orderfa
     {
+        /// <summary>
+        /// 判断是否存在该人物
+        /// </summary>
+        /// <param name="Ono"></param>
+        /// <returns>存在返回true</returns>
+        public bool IsHave(string Ono)
+        {
+            Customer customer = new Customer();
+            SqlConnection conn = new ConnectSQL().Connect();
+            SqlCommand cmd = conn.CreateCommand();
+            int flag = 0;
+            try
+            {
+                cmd.CommandText = "exec IsHaveOrder @isHave out,@Ono;";
+                //设置参数值@isHave
+                cmd.Parameters.Add("@isHave", SqlDbType.Int);
+                cmd.Parameters["@isHave"].Value = flag;
+                //设置参数为输出参数
+                cmd.Parameters["@isHave"].Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@Ono", SqlDbType.VarChar);
+                //设置参数值@Ono
+                cmd.Parameters["@Ono"].Value = Ono;
+                //执行
+                cmd.ExecuteNonQuery();
+                //接受参数
+                flag = int.Parse(cmd.Parameters["@isHave"].Value.ToString());
+                //Console.WriteLine(cmd.Parameters["@isHave"].Value);
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            if (flag == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         /// <summary>
         /// 根据Ono获得一个订单
         /// </summary>
@@ -146,25 +192,30 @@ namespace Back.SqlConn.Op
             }
             conn.Close();
         }
-        public static void Main()
-        {
-            Customer customer = new Customer();
-            Customerfa customerfa = new CustomerSqlOp();
-            customer=customerfa.GetOneCustomer("18812017120");
-            Console.WriteLine( customer.toString());
-            Order order = new Order("1", null, "18812017120", "001", "订单完成");
-            Orderfa orderfa = new OrderSqlOp();
-            Goodsfa goodsfa = new GoodsSqlOp();
-            //orderfa.InsertOneOrder(order);
-            //order.Purchase.Add(goodsfa.GetOneGoods("001"),5);
-            //order.Purchase.Add(goodsfa.GetOneGoods("002"), 2);
-            orderfa.InsertGoodsIntoPurchase(order);
-            Dictionary<Goods,int> purchase= orderfa.GetPurchase(order);
-            foreach(Goods goods in purchase.Keys)
-            {
-                Console.WriteLine(goods.GetGname());
-            }
-            customerfa.DeleteOneCustomer(customer);
-        }
+        //public static void Main()
+        //{
+        //    Customer customer = new Customer("13930251346", "altria", "123", "13930251346", "M", "baoding", 100);
+        //    Customerfa customerfa = new CustomerSqlOp();
+        //    customerfa.InsertOneCustomer(customer);
+        //    if (customerfa.IsHave(customer.GetPno()))
+        //    {
+        //        customer = customerfa.GetOneCustomer("13930251346");
+        //        Console.WriteLine(customer.toString());
+        //    }
+        //    Order order = new Order("1", null, customer.GetPno(), "001", "订单完成");
+        //    Orderfa orderfa = new OrderSqlOp();
+        //    Goodsfa goodsfa = new GoodsSqlOp();
+        //    orderfa.InsertOneOrder(order);
+        //    order.Purchase.Add(goodsfa.GetOneGoods("001"), 5);
+        //    order.Purchase.Add(goodsfa.GetOneGoods("002"), 2);
+        //    Console.WriteLine(orderfa.IsHave("001"));
+        //    orderfa.InsertGoodsIntoPurchase(order);
+        //    Dictionary<Goods, int> purchase = orderfa.GetPurchase(order);
+        //    foreach (Goods goods in purchase.Keys)
+        //    {
+        //        Console.WriteLine(goods.GetGname());
+        //    }
+        //    customerfa.DeleteOneCustomer(customer);
+        //}
     }
 }

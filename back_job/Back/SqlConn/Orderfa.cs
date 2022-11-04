@@ -10,6 +10,12 @@ namespace Back.SqlConn
     public interface Orderfa
     {
         /// <summary>
+        /// 判断是否存在该人物
+        /// </summary>
+        /// <param name="Ono"></param>
+        /// <returns>存在返回true</returns>
+        public bool IsHave(string Ono);
+        /// <summary>
         /// 根据Ono获得一个订单
         /// </summary>
         /// <param name="Ono"></param>

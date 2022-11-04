@@ -2,6 +2,7 @@
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,50 @@ namespace Back.SqlConn.Op
 {
     public class StoreSqlOp: Storefa
     {
+        /// <summary>
+        /// 判断是否存在该人物
+        /// </summary>
+        /// <param name="Sno"></param>
+        /// <returns>返回bool变量</returns>
+        public bool IsHave(string Sno)
+        {
+            SqlConnection conn = new ConnectSQL().Connect();
+            SqlCommand cmd = conn.CreateCommand();
+            int flag = 0;
+            try
+            {
+                cmd.CommandText = "exec IsHaveStore @isHave out,@Sno;";
+                //设置参数值@isHave
+                cmd.Parameters.Add("@isHave", SqlDbType.Int);
+                cmd.Parameters["@isHave"].Value = flag;
+                //设置参数为输出参数
+                cmd.Parameters["@isHave"].Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@Sno", SqlDbType.VarChar);
+                //设置参数值@Pno
+                cmd.Parameters["@Sno"].Value = Sno;
+                //执行
+                cmd.ExecuteNonQuery();
+                //接受参数
+                flag = int.Parse(cmd.Parameters["@isHave"].Value.ToString());
+                //Console.WriteLine(cmd.Parameters["@isHave"].Value);
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            if (flag == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         /// <summary>
         ///通过Sno获得某一个商店信息，返回值为一个商店实体
         /// </summary>
@@ -151,6 +196,19 @@ namespace Back.SqlConn.Op
                 list.Add(store);
             }
             return list;
+        }
+        public static void Main()
+        {
+            Storefa storefa = new StoreSqlOp();
+
+            if (storefa.IsHave("002"))
+            {
+                Console.WriteLine("存在");
+            }
+            else
+            {
+                Console.WriteLine("不存在");
+            }
         }
     }
 }
