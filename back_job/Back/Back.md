@@ -51,3 +51,5 @@ fa.XXX();
 3. 添加图片加入数据库的功能
 
    [DataTableReader.GetBytes(Int32, Int64, Byte[\], Int32, Int32) 方法 (System.Data) | Microsoft Learn](https://learn.microsoft.com/zh-cn/dotnet/api/system.data.datatablereader.getbytes?view=net-6.0)
+   
+4. 实现了查询订单数量的函数GetOrderNum(),返回一个int数字（通过存储过程实现）

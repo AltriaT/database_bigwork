@@ -13,6 +13,40 @@ namespace Back.SqlConn.Op
     public class OrderSqlOp:Orderfa
     {
         /// <summary>
+        /// 返回订单数量
+        /// </summary>
+        public int GetOrdersNum()
+        {
+            Customer customer = new Customer();
+            SqlConnection conn = new ConnectSQL().Connect();
+            SqlCommand cmd = conn.CreateCommand();
+            int num = 0;
+            try
+            {
+                cmd.CommandText = "exec 订单数量 @num out;";
+                //设置参数值@num
+                cmd.Parameters.Add("@num", SqlDbType.Int);
+                cmd.Parameters["@num"].Value = num;
+                //设置参数为输出参数
+                cmd.Parameters["@num"].Direction = ParameterDirection.Output;
+                //执行
+                cmd.ExecuteNonQuery();
+                //接受参数
+                num = int.Parse(cmd.Parameters["@num"].Value.ToString());
+               
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            
+            return num;
+        }
+        /// <summary>
         /// 判断是否存在该人物
         /// </summary>
         /// <param name="Ono"></param>
@@ -85,9 +119,10 @@ namespace Back.SqlConn.Op
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "select * from orders where Cno='" + Cno + "';";
             Console.WriteLine(cmd.CommandText);
+            Order order = new Order();
             SqlDataReader reader = cmd.ExecuteReader();
-            reader.Read();
-            Order order = new Order(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetDecimal(6), reader.GetDecimal(7));
+            if(reader.Read())
+                order = new Order(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetDecimal(6), reader.GetDecimal(7));
             conn.Close();
             return order;
         }
@@ -295,30 +330,30 @@ namespace Back.SqlConn.Op
             }
             return state;
         }
-        //public static void Main()
-        //{
-        //    Customer customer = new Customer("13930251346", "altria", "123", "13930251346", "M", "baoding", 100);
-        //    Customerfa customerfa = new CustomerSqlOp();
-        //    customerfa.InsertOneCustomer(customer);
-        //    if (customerfa.IsHave(customer.GetPno()))
-        //    {
-        //        customer = customerfa.GetOneCustomer("13930251346");
-        //        Console.WriteLine(customer.toString());
-        //    }
-        //    Order order = new Order("1", null, customer.GetPno(), "001", "订单完成");
-        //    Orderfa orderfa = new OrderSqlOp();
-        //    Goodsfa goodsfa = new GoodsSqlOp();
-        //    orderfa.InsertOneOrder(order);
-        //    order.Purchase.Add(goodsfa.GetOneGoods("001"), 5);
-        //    order.Purchase.Add(goodsfa.GetOneGoods("002"), 2);
-        //    Console.WriteLine(orderfa.IsHave("001"));
-        //    orderfa.InsertGoodsIntoPurchase(order);
-        //    Dictionary<Goods, int> purchase = orderfa.GetPurchase(order);
-        //    foreach (Goods goods in purchase.Keys)
-        //    {
-        //        Console.WriteLine(goods.GetGname());
-        //    }
-        //    customerfa.DeleteOneCustomer(customer);
-        //}
+        public static void Main()
+        {
+            //Customer customer = new Customer("13930251346", "altria", "123", "13930251346", "M", "baoding", 100);
+            //Customerfa customerfa = new CustomerSqlOp();
+            //customerfa.InsertOneCustomer(customer);
+            //if (customerfa.IsHave(customer.GetPno()))
+            //{
+            //    customer = customerfa.GetOneCustomer("13930251346");
+            //    Console.WriteLine(customer.toString());
+            //}
+            //Order order = new Order("1", null, customer.GetPno(), "001", "订单完成");
+            //Orderfa orderfa = new OrderSqlOp();
+            //Goodsfa goodsfa = new GoodsSqlOp();
+            //orderfa.InsertOneOrder(order);
+            //order.Purchase.Add(goodsfa.GetOneGoods("001"), 5);
+            //order.Purchase.Add(goodsfa.GetOneGoods("002"), 2);
+            //Console.WriteLine(orderfa.GetOrdersNum());
+            //orderfa.InsertGoodsIntoPurchase(order);
+            //Dictionary<Goods, int> purchase = orderfa.GetPurchase(order);
+            //foreach (Goods goods in purchase.Keys)
+            //{
+            //    Console.WriteLine(goods.GetGname());
+            //}
+            //customerfa.DeleteOneCustomer(customer);
+        }
     }
 }

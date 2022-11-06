@@ -11,6 +11,10 @@ namespace Back.SqlConn
     public interface Orderfa
     {
         /// <summary>
+        /// 返回订单数量
+        /// </summary>
+        public int GetOrdersNum();
+        /// <summary>
         /// 判断是否存在该人物
         /// </summary>
         /// <param name="Ono"></param>

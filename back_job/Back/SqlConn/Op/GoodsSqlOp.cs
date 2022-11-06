@@ -60,61 +60,16 @@ namespace Back.SqlConn.Op
         ///更新某一个物品
         ///</summary>
         ///<param name="goods"></param>
-        public void UpdateOneGoods(Goods goods)
+        ///<returns>状态码1(SUCCESS),2627(插入重复键)，547(约束冲突)</returns>
+        public int UpdateOneGoods(Goods goods)
         {
+            int state=1;
             SqlConnection conn = new ConnectSQL().Connect();
             SqlCommand cmd = new SqlCommand("", conn);
             //update Goods set Gname='金丝虾球',Gprice=10.00,Gstock='5' where Gno='001'and Sno='001';
             cmd.CommandText = "update Goods set Gname=@Gname,Gprice=@Gprice,Gstock=@Gstock,Gimg=@Gimg where Gno=@Gno and Sno=@Sno;";
-            cmd.Parameters.AddWithValue("@Gname", goods.GetGname());
-            cmd.Parameters.AddWithValue("@Gprice", goods.GetGprice());
-            cmd.Parameters.AddWithValue("@Gstock", goods.GetGstock());
-            cmd.Parameters.AddWithValue("@Gimg", goods.GetImg());
-            cmd.Parameters.AddWithValue("@Gno", goods.GetGno());
-            cmd.Parameters.AddWithValue("@Sno", goods.GetSno());
-            Console.WriteLine(cmd.CommandText);
-            cmd.ExecuteNonQuery();
-            conn.Close();
-        }
-        ///<summary>
-        ///插入某一个物品
-        ///</summary>
-        ///<param name="goods"></param>
-        public void InsertOneGoods(Goods goods)
-        {
-            SqlConnection conn = new ConnectSQL().Connect();
-            SqlCommand cmd = new SqlCommand("", conn);
-            cmd.CommandText = "insert into goods values('" + goods.GetGno() + "','" + goods.GetSno() + "','" + goods.GetGname() + "'," + goods.GetGprice() + "," + goods.GetGstock() +","+goods.GetImg()+");";
-            Console.WriteLine(cmd.CommandText);
-            cmd.ExecuteNonQuery();
-            conn.Close();
-        }
-        ///<summary>
-        ///删除某一个物品
-        ///</summary>
-        ///<param name="goods"></param>
-        public void DeleteOneGoods(Goods goods)
-        {
-            SqlConnection conn = new ConnectSQL().Connect();
-            SqlCommand cmd = new SqlCommand("", conn);
-            //delete from goods where Gno='002';
-            cmd.CommandText = "delete from goods where Gno='" + goods.GetGno() + "';";
-            Console.WriteLine(cmd.CommandText);
-            cmd.ExecuteNonQuery();
-            conn.Close();
-        }
-        ///<summary>
-        ///更新所有物品
-        ///</summary>
-        ///<param name="goodses"></param>
-        public void UpdateAllGoods(List<Goods> goodses)
-        {
-            SqlConnection conn = new ConnectSQL().Connect();
-            SqlCommand cmd = new SqlCommand("", conn);
-            foreach (Goods goods in goodses)
+            try
             {
-                //update Goods set Gname='金丝虾球',Gprice=10.00,Gstock='5' where Gno='001'and Sno='001';
-                cmd.CommandText = "update Goods set Gname=@Gname,Gprice=@Gprice,Gstock=@Gstock,Gimg=@Gimg where Gno=@Gno and Sno=@Sno;";
                 cmd.Parameters.AddWithValue("@Gname", goods.GetGname());
                 cmd.Parameters.AddWithValue("@Gprice", goods.GetGprice());
                 cmd.Parameters.AddWithValue("@Gstock", goods.GetGstock());
@@ -124,46 +79,170 @@ namespace Back.SqlConn.Op
                 Console.WriteLine(cmd.CommandText);
                 cmd.ExecuteNonQuery();
             }
-            conn.Close();
+            catch(SqlException ex)
+            {
+                state = ex.Number;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return state;
+        }
+        ///<summary>
+        ///插入某一个物品
+        ///</summary>
+        ///<param name="goods"></param>
+        ///<returns>状态码1(SUCCESS),2627(插入重复键)，547(约束冲突)</returns>
+        public int InsertOneGoods(Goods goods)
+        {
+            int state = 1;
+            SqlConnection conn = new ConnectSQL().Connect();
+            SqlCommand cmd = new SqlCommand("", conn);
+            try
+            {
+                cmd.CommandText = "insert into goods values('" + goods.GetGno() + "','" + goods.GetSno() + "','" + goods.GetGname() + "'," + goods.GetGprice() + "," + goods.GetGstock() + "," + goods.GetImg() + ");";
+                Console.WriteLine(cmd.CommandText);
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                state=ex.Number;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return state;
+        }
+        ///<summary>
+        ///删除某一个物品
+        ///</summary>
+        ///<param name="goods"></param>
+        ///<returns>状态码1(SUCCESS),2627(插入重复键)，547(约束冲突)</returns>
+        public int DeleteOneGoods(Goods goods)
+        {
+            int state = 1;
+            SqlConnection conn = new ConnectSQL().Connect();
+            SqlCommand cmd = new SqlCommand("", conn);
+            //delete from goods where Gno='002';
+            try
+            {
+                cmd.CommandText = "delete from goods where Gno='" + goods.GetGno() + "';";
+                Console.WriteLine(cmd.CommandText);
+                cmd.ExecuteNonQuery();
+            }
+            catch(SqlException ex)
+            {
+                state = ex.Number;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return state;
+        }
+        ///<summary>
+        ///更新所有物品
+        ///</summary>
+        ///<param name="goodses"></param>
+        ///<returns>状态码1(SUCCESS),2627(插入重复键)，547(约束冲突)</returns>
+        public int UpdateAllGoods(List<Goods> goodses)
+        {
+            int state = 1;
+            SqlConnection conn = new ConnectSQL().Connect();
+            SqlCommand cmd = new SqlCommand("", conn);
+            try
+            {
+                foreach (Goods goods in goodses)
+                {
+                    //update Goods set Gname='金丝虾球',Gprice=10.00,Gstock='5' where Gno='001'and Sno='001';
+                    cmd.CommandText = "update Goods set Gname=@Gname,Gprice=@Gprice,Gstock=@Gstock,Gimg=@Gimg where Gno=@Gno and Sno=@Sno;";
+                    cmd.Parameters.AddWithValue("@Gname", goods.GetGname());
+                    cmd.Parameters.AddWithValue("@Gprice", goods.GetGprice());
+                    cmd.Parameters.AddWithValue("@Gstock", goods.GetGstock());
+                    cmd.Parameters.AddWithValue("@Gimg", goods.GetImg());
+                    cmd.Parameters.AddWithValue("@Gno", goods.GetGno());
+                    cmd.Parameters.AddWithValue("@Sno", goods.GetSno());
+                    Console.WriteLine(cmd.CommandText);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch(SqlException ex)
+            {
+                state = ex.Number;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return state;
         }
         ///<summary>
         ///插入所有物品
         ///</summary>
         ///<param name="goodses"></param>
-        public void InsertAllGoods(List<Goods> goodses)
+        ///<returns>状态码1(SUCCESS),2627(插入重复键)，547(约束冲突)</returns>
+        public int InsertAllGoods(List<Goods> goodses)
         {
+            int state = 1;
             SqlConnection conn = new ConnectSQL().Connect();
             SqlCommand cmd = new SqlCommand("", conn);
-            foreach (Goods goods in goodses)
+            try
             {
-                cmd.CommandText = "insert into goods values('" + goods.GetGno() + "','" + goods.GetSno() + "','" + goods.GetGname() + "'," + goods.GetGprice() + "," + goods.GetGstock() + ");";
-                Console.WriteLine(cmd.CommandText);
-                cmd.ExecuteNonQuery();
+                foreach (Goods goods in goodses)
+                {
+                    cmd.CommandText = "insert into goods values('" + goods.GetGno() + "','" + goods.GetSno() + "','" + goods.GetGname() + "'," + goods.GetGprice() + "," + goods.GetGstock() + ");";
+                    Console.WriteLine(cmd.CommandText);
+                    cmd.ExecuteNonQuery();
+                }
             }
-            conn.Close();
+            catch(SqlException ex)
+            {
+                state = ex.Number;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return state;
         }
         ///<summary>
         ///更新所有物品
         ///</summary>
         /// <param name="goodses"></param>
-        public void DeleteAllGoods(List<Goods> goodses)
+        /// <returns>状态码1(SUCCESS),2627(插入重复键)，547(约束冲突)</returns>
+        public int DeleteAllGoods(List<Goods> goodses)
         {
+            int state = 1;
             SqlConnection conn = new ConnectSQL().Connect();
             SqlCommand cmd = new SqlCommand("", conn);
-            foreach (Goods goods in goodses)
+            try
             {
-                //delete from goods where Gno='002';
-                cmd.CommandText = "delete from goods where Gno='" + goods.GetGno() + "';";
-                Console.WriteLine(cmd.CommandText);
-                cmd.ExecuteNonQuery();
+                foreach (Goods goods in goodses)
+                {
+                    //delete from goods where Gno='002';
+                    cmd.CommandText = "delete from goods where Gno='" + goods.GetGno() + "';";
+                    Console.WriteLine(cmd.CommandText);
+                    cmd.ExecuteNonQuery();
+                }
             }
-            conn.Close();
+            catch(SqlException ex)
+            {
+                state = ex.Number;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return state;
         }
         /// <summary>
         /// 将字典转为列表
         /// </summary>
         /// <param name="Goodses"></param>
         /// <returns>List<Goods></returns>
+        /// <returns>状态码1(SUCCESS),2627(插入重复键)，547(约束冲突)</returns>
         public List<Goods> PutInList(Dictionary<string, Goods> Goodses)
         {
             List<Goods> list = new List<Goods>();
