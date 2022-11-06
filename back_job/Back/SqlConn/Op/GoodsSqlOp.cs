@@ -5,6 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Back.ObjClass;
+using System.IO;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
 
 namespace Back.SqlConn.Op
 {
@@ -23,7 +27,10 @@ namespace Back.SqlConn.Op
             Goods goods=new Goods();
             if (reader.Read())
             {
-                 goods= new Goods(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetDecimal(3), reader.GetInt32(4));
+                long len = reader.GetBytes(5, 0, null, 0, 0);
+                byte[] buffer = new byte[len];
+                reader.GetBytes(5, 0, buffer, 0, (int)len);
+                goods= new Goods(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetDecimal(3), reader.GetInt32(4),buffer);
             }
             conn.Close();
             return goods;
@@ -40,7 +47,10 @@ namespace Back.SqlConn.Op
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                Goods goods = new Goods(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetDecimal(3), reader.GetInt32(4));
+                long len = reader.GetBytes(5, 0, null, 0, 0);
+                byte[] buffer = new byte[len];
+                reader.GetBytes(5, 0, buffer, 0, (int)len);
+                Goods goods = new Goods(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetDecimal(3), reader.GetInt32(4), buffer);
                 goodses.Add(goods.GetGno(), goods);
             }
             conn.Close();
@@ -50,12 +60,18 @@ namespace Back.SqlConn.Op
         ///更新某一个物品
         ///</summary>
         ///<param name="goods"></param>
-        public void UpdateOneStore(Goods goods)
+        public void UpdateOneGoods(Goods goods)
         {
             SqlConnection conn = new ConnectSQL().Connect();
             SqlCommand cmd = new SqlCommand("", conn);
             //update Goods set Gname='金丝虾球',Gprice=10.00,Gstock='5' where Gno='001'and Sno='001';
-            cmd.CommandText = "update Goods set " + "Gname='" + goods.GetGname() + "',Gprice=" + goods.GetGprice() + ",Gstock='" + goods.GetGstock() + "' where Gno='" + goods.GetGno() + "'and Sno='" + goods.GetSno() + "';";
+            cmd.CommandText = "update Goods set Gname=@Gname,Gprice=@Gprice,Gstock=@Gstock,Gimg=@Gimg where Gno=@Gno and Sno=@Sno;";
+            cmd.Parameters.AddWithValue("@Gname", goods.GetGname());
+            cmd.Parameters.AddWithValue("@Gprice", goods.GetGprice());
+            cmd.Parameters.AddWithValue("@Gstock", goods.GetGstock());
+            cmd.Parameters.AddWithValue("@Gimg", goods.GetImg());
+            cmd.Parameters.AddWithValue("@Gno", goods.GetGno());
+            cmd.Parameters.AddWithValue("@Sno", goods.GetSno());
             Console.WriteLine(cmd.CommandText);
             cmd.ExecuteNonQuery();
             conn.Close();
@@ -91,14 +107,20 @@ namespace Back.SqlConn.Op
         ///更新所有物品
         ///</summary>
         ///<param name="goodses"></param>
-        public void UpdateAllStore(List<Goods> goodses)
+        public void UpdateAllGoods(List<Goods> goodses)
         {
             SqlConnection conn = new ConnectSQL().Connect();
             SqlCommand cmd = new SqlCommand("", conn);
             foreach (Goods goods in goodses)
             {
                 //update Goods set Gname='金丝虾球',Gprice=10.00,Gstock='5' where Gno='001'and Sno='001';
-                cmd.CommandText = "update Goods set " + "Gname='" + goods.GetGname() + "',Gprice=" + goods.GetGprice() + ",Gstock='" + goods.GetGstock()+"',Gimg="+goods.GetImg() + " where Gno='" + goods.GetGno() + "'and Sno='" + goods.GetSno() + "';";
+                cmd.CommandText = "update Goods set Gname=@Gname,Gprice=@Gprice,Gstock=@Gstock,Gimg=@Gimg where Gno=@Gno and Sno=@Sno;";
+                cmd.Parameters.AddWithValue("@Gname", goods.GetGname());
+                cmd.Parameters.AddWithValue("@Gprice", goods.GetGprice());
+                cmd.Parameters.AddWithValue("@Gstock", goods.GetGstock());
+                cmd.Parameters.AddWithValue("@Gimg", goods.GetImg());
+                cmd.Parameters.AddWithValue("@Gno", goods.GetGno());
+                cmd.Parameters.AddWithValue("@Sno", goods.GetSno());
                 Console.WriteLine(cmd.CommandText);
                 cmd.ExecuteNonQuery();
             }

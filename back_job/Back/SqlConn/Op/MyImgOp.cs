@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Back.ObjClass;
 namespace Back.SqlConn.Op
 {
     public class MyImgOp
@@ -27,6 +27,10 @@ namespace Back.SqlConn.Op
         //{
         //    MyImgOp op = new MyImgOp();
         //    byte[] img = op.TurnImgToByte(@"D:\myStudy\大三啊啊要毕业了\数据库\BIG_WORK\img\kitty.jpg");
+        //    Goodsfa goodsfa = new GoodsSqlOp();
+        //    Goods goods = goodsfa.GetOneGoods("001");
+        //    goods.SetImg(img);
+        //    goodsfa.UpdateOneGoods(goods);
         //}
     }
 }

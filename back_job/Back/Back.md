@@ -46,4 +46,8 @@ fa.XXX();
 
 1. 接口可以通过isHave()方法查询是否含有该项，这是通过sql里的存储过程和C#API接口实现的
 
-   
+2. 添加通过顾客号查找订单的功能
+
+3. 添加图片加入数据库的功能
+
+   [DataTableReader.GetBytes(Int32, Int64, Byte[\], Int32, Int32) 方法 (System.Data) | Microsoft Learn](https://learn.microsoft.com/zh-cn/dotnet/api/system.data.datatablereader.getbytes?view=net-6.0)

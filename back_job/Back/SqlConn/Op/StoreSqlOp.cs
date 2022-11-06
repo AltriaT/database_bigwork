@@ -197,18 +197,18 @@ namespace Back.SqlConn.Op
             }
             return list;
         }
-        public static void Main()
-        {
-            Storefa storefa = new StoreSqlOp();
+        //public static void Main()
+        //{
+        //    Storefa storefa = new StoreSqlOp();
 
-            if (storefa.IsHave("002"))
-            {
-                Console.WriteLine("存在");
-            }
-            else
-            {
-                Console.WriteLine("不存在");
-            }
-        }
+        //    if (storefa.IsHave("002"))
+        //    {
+        //        Console.WriteLine("存在");
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("不存在");
+        //    }
+        //}
     }
 }
